@@ -18,6 +18,8 @@ public class SparseArray {
         int column = 11;
         int [][] chessArray1 = new int [line][column];
 
+
+
         chessArray1[5][1] = 2;
         chessArray1[10][6] = 1;
         chessArray1[7][5] = 1;
