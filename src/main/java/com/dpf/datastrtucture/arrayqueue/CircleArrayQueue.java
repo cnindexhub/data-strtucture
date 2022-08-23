@@ -1,25 +1,22 @@
 package com.dpf.datastrtucture.arrayqueue;
 
-// 使用数组模拟队列
-public class ArrayQueue {
+public class CircleArrayQueue {
 
-    private int maxSize;
+    private int maxSize; // 最大容量
 
-    private int front;
+    private int front; // 队列头
 
-    private int rear;
+    private int rear; // 队列尾
 
     private int[] arr;
 
-    public ArrayQueue (int maxSize) {
+    public CircleArrayQueue (int maxSize) {
         this.maxSize = maxSize;
         arr = new int[maxSize];
-        this.rear = -1;
-        this.front = -1;
     }
 
     public boolean isFull () {
-        return this.rear == maxSize -1;
+        return (rear + 1) % maxSize == front;
     }
 
     public boolean isEmpty () {
@@ -28,8 +25,8 @@ public class ArrayQueue {
 
     public boolean addQueue (int item) {
         if (!isFull()) {
-            this.rear++;
-            this.arr[this.rear] = item;
+            arr[rear] = item;
+            this.rear = (rear + 1) % maxSize;
             return true;
         }
         return false;
@@ -37,15 +34,16 @@ public class ArrayQueue {
 
     public int getQueue () {
         if (!isEmpty()) {
-            this.front++;
-            return this.arr[front];
+            int item = arr[front];
+            front = (front + 1) % maxSize;
+            return item;
         }
         throw new RuntimeException("队列已经为空了！");
     }
 
     public int peek () {
         if (!isEmpty()) {
-            return this.arr[front + 1];
+            return this.arr[front];
         }
         throw new RuntimeException("队列已经为空了！");
     }
@@ -54,9 +52,14 @@ public class ArrayQueue {
         if (isEmpty()) {
             throw new RuntimeException("队列已经为空了！");
         }
-        for (int i = 0; i < maxSize; i++) {
-            System.out.printf("arr[%d] = %d\n", i, arr[i]);
+        for (int i = front; i < rear + size(); i++) {
+            System.out.printf("arr[%d] = %d\n", i % maxSize, arr[i % maxSize]);
         }
+    }
+
+
+    public int size () {
+        return (rear - front + 1) % maxSize;
     }
 
 }
