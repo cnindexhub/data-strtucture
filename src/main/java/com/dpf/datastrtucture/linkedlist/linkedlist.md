@@ -6,3 +6,4 @@
 3. 链表各个节点不一定是连续存储的
 4. 链表分为：带头节点的链表、不带头节点的链表
 
+![图片alt](C://Users//DPF//Pictures//Saved Pictures//car.jpg "图片title")
