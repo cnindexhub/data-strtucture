@@ -11,8 +11,8 @@ public class CircleArrayQueue {
     private int[] arr;
 
     public CircleArrayQueue (int maxSize) {
-        this.maxSize = maxSize;
-        arr = new int[maxSize];
+        this.maxSize = maxSize + 1;
+        arr = new int[maxSize + 1];
     }
 
     public boolean isFull () {
