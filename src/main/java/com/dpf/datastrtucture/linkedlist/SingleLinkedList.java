@@ -36,17 +36,17 @@ public class SingleLinkedList {
             if (temp.next == null) {
                 break;
             }
-            // 操作排序的英雄
-            temp = temp.next;
             // 当前英雄已经存在
-            if (heroNode.no == temp.no) {
+            if (heroNode.no == temp.next.no) {
                 flag = true;
                 break;
             }
             // 在temp 指向添加的英雄
-            if (heroNode.no > temp.no) {
+            if (temp.next.no > heroNode.no) {
                 break;
             }
+            // 操作排序的英雄
+            temp = temp.next;
         }
         if (flag) {
             System.out.println("当前英雄已经存在！");
@@ -117,6 +117,19 @@ public class SingleLinkedList {
         }
     }
 
+    /**
+     * 获取中间的链表中间节点
+     * @return HeroNode middleHeroNode
+     */
+    public HeroNode middleHeroNode () {
+        HeroNode slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
     public void show () {
         HeroNode temp = head.next;
         if (head.next == null) {
@@ -126,5 +139,20 @@ public class SingleLinkedList {
             System.out.println(temp);
             temp = temp.next;
         }
+    }
+
+    public void foreachShowList (HeroNode head) {
+        HeroNode temp = head.next;
+        if (head.next == null) {
+            System.out.println("链表为空！");
+        }
+        while (temp != null) {
+            System.out.println(temp);
+            temp = temp.next;
+        }
+    }
+
+    public HeroNode getHead () {
+        return this.head;
     }
 }
