@@ -4,6 +4,7 @@ package com.dpf.datastrtucture.linkedlist;
  * 英雄类
  */
 public class HeroNode {
+
     // 编号
     public int no;
     // 名称

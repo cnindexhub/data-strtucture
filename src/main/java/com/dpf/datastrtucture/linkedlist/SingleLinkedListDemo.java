@@ -2,6 +2,8 @@ package com.dpf.datastrtucture.linkedlist;
 
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 
+import java.util.Stack;
+
 public class SingleLinkedListDemo {
 
     public static void main(String[] args) {
@@ -57,12 +59,12 @@ public class SingleLinkedListDemo {
         System.out.println("-----使用迭代法反转后显示-----");
         singleLinkedList.foreachShowList(head);
         // 反转当前链表--使用递归法
-        System.out.println("-----反转当前链表--使用递归法-----");
-        head = reversalListByRecursiveMethod(singleLinkedList.getHead().next);
-        System.out.println(head);
-        // 使用迭代法反转后显示
-        System.out.println("-----使用迭代法反转后显示-----");
-        singleLinkedList.foreachShowList(head);
+//        System.out.println("-----反转当前链表--使用递归法-----");
+//        head = reversalListByRecursiveMethod(singleLinkedList.getHead().next);
+//        System.out.println(head);
+        // 利用栈的先进后出的特性打印链表
+        System.out.println("-----利用栈的先进后出的特性逆序打印单链表-----");
+        reverseOrderPrintListNode(head);
     }
 
 
@@ -138,4 +140,29 @@ public class SingleLinkedListDemo {
         head.next = null;
         return newHeroNode;
     }
+
+    // 从尾到头打印单链表
+    // 思路
+    // 方法1：先将单链表进行反转操作，然后再遍历即可
+    // 方法2: 可以利用栈这个数据结构，将各个节点压入栈中，然后利用栈的先进后出的特点，就实现了逆序打印的效果
+    // 使用方式2来实现逆序打印
+
+    public static void reverseOrderPrintListNode (HeroNode head) {
+        if (head.next == null) {
+            return;
+        }
+        Stack<HeroNode> stack = new Stack<>();
+        while (true) {
+            if (head.next == null) {
+                break;
+            }
+            head = head.next;
+            stack.push(head);
+        }
+        while (stack.size() > 0) {
+            System.out.println(stack.pop());
+        }
+    }
+
+
 }
